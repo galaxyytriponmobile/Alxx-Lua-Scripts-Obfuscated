@@ -1,0 +1,58 @@
+
+
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local player = game.Players.LocalPlayer
+
+
+local selectedMap = "Magma City"
+local farming = false
+
+
+local function toggleFarm(state)
+    farming = state
+    if farming then
+        while farming do
+            local orbs = {"Red Orb", "Gem", "Yellow Orb", "Blue Orb", "Orange Orb"}
+            for _, orb in ipairs(orbs) do
+                local args = {
+                    [1] = "collectOrb",
+                    [2] = orb,
+                    [3] = selectedMap
+                }
+                game:GetService("ReplicatedStorage").rEvents.orbEvent:FireServer(unpack(args))
+                wait(0.1)
+            end
+        end
+    end
+end
+
+
+local Window = OrionLib:MakeWindow({Name = "Legends of Speed Auto Farm", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionConfig"})
+
+
+local FarmTab = Window:MakeTab({
+    Name = "Farming",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+
+FarmTab:AddDropdown({
+    Name = "Select Map",
+    Default = "Magma City",
+    Options = {"City", "Snow City", "Magma City", "Legends Highway"},
+    Callback = function(map)
+        selectedMap = map
+    end    
+})
+
+
+FarmTab:AddToggle({
+    Name = "Auto Farm",
+    Default = false,
+    Callback = function(state)
+        toggleFarm(state)
+    end
+})
+
+OrionLib:Init()
