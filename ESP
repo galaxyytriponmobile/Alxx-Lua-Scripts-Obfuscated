@@ -1,0 +1,268 @@
+-- PLAYER ESP FROM ALEXROBLOX TM
+-- USE FREELY BUT GIVE CREDIT PLS
+
+local UserInputService = game:GetService("UserInputService")
+local HttpService = game:GetService("HttpService")
+local TweenService = game:GetService("TweenService")
+local RunService = game:GetService("RunService")
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local Camera = workspace.CurrentCamera
+local Mouse = LocalPlayer:GetMouse()
+
+-- Variables for ESP
+local ESPEnabled = true
+local ESPColor = Color3.fromRGB(255, 0, 0)
+
+-- Main GUI
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Parent = game.CoreGui
+
+local MainFrame = Instance.new("Frame")
+MainFrame.Size = UDim2.new(0, 300, 0, 400)
+MainFrame.Position = UDim2.new(0.5, -150, 0.5, -200)
+MainFrame.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)
+MainFrame.BorderSizePixel = 0
+MainFrame.Parent = ScreenGui
+
+local Title = Instance.new("TextLabel")
+Title.Size = UDim2.new(1, 0, 0, 50)
+Title.BackgroundColor3 = Color3.new(0.2, 0.2, 0.2)
+Title.BorderSizePixel = 0
+Title.Text = "ESP Settings"
+Title.TextColor3 = Color3.new(1, 1, 1)
+Title.TextScaled = true
+Title.Parent = MainFrame
+
+local CloseButton = Instance.new("TextButton")
+CloseButton.Size = UDim2.new(0, 50, 0, 50)
+CloseButton.Position = UDim2.new(1, -50, 0, 0)
+CloseButton.BackgroundColor3 = Color3.new(0.2, 0.2, 0.2)
+CloseButton.BorderSizePixel = 0
+CloseButton.Text = "X"
+CloseButton.TextColor3 = Color3.new(1, 1, 1)
+CloseButton.TextScaled = true
+CloseButton.Parent = MainFrame
+
+local ToggleESPButton = Instance.new("TextButton")
+ToggleESPButton.Size = UDim2.new(1, -20, 0, 50)
+ToggleESPButton.Position = UDim2.new(0, 10, 0, 60)
+ToggleESPButton.BackgroundColor3 = Color3.new(0.3, 0.3, 0.3)
+ToggleESPButton.BorderSizePixel = 0
+ToggleESPButton.Text = "Toggle ESP"
+ToggleESPButton.TextColor3 = Color3.new(1, 1, 1)
+ToggleESPButton.TextScaled = true
+ToggleESPButton.Parent = MainFrame
+
+local ColorPickerLabel = Instance.new("TextLabel")
+ColorPickerLabel.Size = UDim2.new(1, -20, 0, 50)
+ColorPickerLabel.Position = UDim2.new(0, 10, 0, 120)
+ColorPickerLabel.BackgroundColor3 = Color3.new(0.2, 0.2, 0.2)
+ColorPickerLabel.BorderSizePixel = 0
+ColorPickerLabel.Text = "Enemy Color"
+ColorPickerLabel.TextColor3 = Color3.new(1, 1, 1)
+ColorPickerLabel.TextScaled = true
+ColorPickerLabel.Parent = MainFrame
+
+local ColorPicker = Instance.new("TextButton")
+ColorPicker.Size = UDim2.new(1, -20, 0, 50)
+ColorPicker.Position = UDim2.new(0, 10, 0, 180)
+ColorPicker.BackgroundColor3 = ESPColor
+ColorPicker.BorderSizePixel = 0
+ColorPicker.Text = ""
+ColorPicker.Parent = MainFrame
+
+local DraggableArea = Instance.new("Frame")
+DraggableArea.Size = UDim2.new(1, 0, 0, 50)
+DraggableArea.BackgroundTransparency = 1
+DraggableArea.Parent = MainFrame
+
+-- Make the GUI draggable
+local dragging, dragInput, dragStart, startPos
+
+local function update(input)
+    local delta = input.Position - dragStart
+    MainFrame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+end
+
+DraggableArea.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        dragging = true
+        dragStart = input.Position
+        startPos = MainFrame.Position
+        
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+                dragging = false
+            end
+        end)
+    end
+end)
+
+DraggableArea.InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement then
+        dragInput = input
+    end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+    if input == dragInput and dragging then
+        update(input)
+    end
+end)
+
+-- Functionality
+local function ToggleESP()
+    ESPEnabled = not ESPEnabled
+    print("ESP Enabled:", ESPEnabled)
+    if ESPEnabled then
+        ApplyESP()
+    else
+        RemoveESP()
+    end
+end
+
+ToggleESPButton.MouseButton1Click:Connect(ToggleESP)
+
+local function ChangeColor()
+    local newColor = Color3.fromHSV(math.random(), 1, 1)
+    ColorPicker.BackgroundColor3 = newColor
+    ESPColor = newColor
+    print("Enemy Color changed to:", newColor)
+end
+
+ColorPicker.MouseButton1Click:Connect(ChangeColor)
+
+CloseButton.MouseButton1Click:Connect(function()
+    ScreenGui:Destroy()
+end)
+
+-- ESP logic
+local function CreateESP(player)
+    if player.Character then
+        if not player.Character:FindFirstChild("HumanoidRootPart") then
+            player.Character:WaitForChild("HumanoidRootPart")
+        end
+
+        local BillboardGui = Instance.new("BillboardGui")
+        BillboardGui.Name = "ESP"
+        BillboardGui.Adornee = player.Character:WaitForChild("HumanoidRootPart")
+        BillboardGui.AlwaysOnTop = true
+        BillboardGui.Size = UDim2.new(4, 0, 6, 0) -- Adjust size as needed
+        BillboardGui.StudsOffset = Vector3.new(0, 1.5, 0)  -- Adjust this value to fit better (was 3)
+        BillboardGui.Parent = player.Character
+
+        local Frame = Instance.new("Frame")
+        Frame.Size = UDim2.new(1, 0, 1, 0)
+        Frame.BackgroundTransparency = 1
+        Frame.BorderSizePixel = 0
+        Frame.Parent = BillboardGui
+
+        for _, side in pairs({"Top", "Bottom", "Left", "Right"}) do
+            local Border = Instance.new("Frame")
+            Border.Name = side
+            Border.BorderSizePixel = 0
+            Border.BackgroundColor3 = ESPColor
+            Border.Parent = Frame
+
+            if side == "Top" then
+                Border.Size = UDim2.new(1, 0, 0, 3) -- Thickness of the border
+                Border.Position = UDim2.new(0, 0, 0, 0)
+            elseif side == "Bottom" then
+                Border.Size = UDim2.new(1, 0, 0, 3)
+                Border.Position = UDim2.new(0, 0, 1, -3)
+            elseif side == "Left" then
+                Border.Size = UDim2.new(0, 3, 1, 0)
+                Border.Position = UDim2.new(0, 0, 0, 0)
+            elseif side == "Right" then
+                Border.Size = UDim2.new(0, 3, 1, 0)
+                Border.Position = UDim2.new(1, -3, 0, 0)
+            end
+        end
+    end
+end
+
+
+local function RemoveESP()
+    for _, player in pairs(Players:GetPlayers()) do
+        if player ~= LocalPlayer and player.Character then
+            for _, gui in pairs(player.Character:GetChildren()) do
+                if gui:IsA("BillboardGui") and gui.Name == "ESP" then
+                    gui:Destroy()
+                end
+            end
+        end
+    end
+end
+
+local function ApplyESP()
+    for _, player in pairs(Players:GetPlayers()) do
+        if player ~= LocalPlayer then
+            if player.Character then
+                CreateESP(player)
+            end
+            player.CharacterAdded:Connect(function(character)
+                if ESPEnabled then
+                    wait(1) -- Wait for character to fully load
+                    CreateESP(player)
+                end
+            end)
+        end
+    end
+    
+    Players.PlayerAdded:Connect(function(player)
+        if player ~= LocalPlayer then
+            player.CharacterAdded:Connect(function(character)
+                if ESPEnabled then
+                    wait(1) -- Wait for character to fully load
+                    CreateESP(player)
+                end
+            end)
+        end
+    end)
+end
+
+ApplyESP()
+
+-- Update ESP boxes color
+ColorPicker.MouseButton1Click:Connect(function()
+    ChangeColor()
+    for _, player in pairs(Players:GetPlayers()) do
+        if player ~= LocalPlayer and player.Character then
+            for _, gui in pairs(player.Character:GetChildren()) do
+                if gui:IsA("BillboardGui") and gui.Name == "ESP" then
+                    for _, frame in pairs(gui:GetChildren()) do
+                        if frame:IsA("Frame") then
+                            for _, border in pairs(frame:GetChildren()) do
+                                if border:IsA("Frame") then
+                                    border.BackgroundColor3 = ESPColor
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
+end)
+
+Players.PlayerRemoving:Connect(function(player)
+    if player ~= LocalPlayer and player.Character then
+        for _, gui in pairs(player.Character:GetChildren()) do
+            if gui:IsA("BillboardGui") and gui.Name == "ESP" then
+                gui:Destroy()
+            end
+        end
+    end
+end)
+
+-- Ensure ESP is applied to players who may not have had it applied initially
+RunService.Heartbeat:Connect(function()
+    if ESPEnabled then
+        for _, player in pairs(Players:GetPlayers()) do
+            if player ~= LocalPlayer and player.Character and not player.Character:FindFirstChild("ESP") then
+                CreateESP(player)
+            end
+        end
+    end
+end)
