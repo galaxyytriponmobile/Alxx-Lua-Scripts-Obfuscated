@@ -1,0 +1,619 @@
+-- Define a styleSheet sheet for GUI components
+local styleSheet = {
+    container = {
+        -- Frame
+        size = UDim2.new(0.6, 0, 0.7, 0),
+        position = UDim2.new(0.2, 0, 0.15, 0),
+        backgroundColor = Color3.fromRGB(45, 45, 45), -- Dark background
+        borderRadius = 8, -- UICorner
+        borderSizePixel = 1
+    },
+    header = {
+        -- Frame
+        size = UDim2.new(1, 0, 0.1, 0),
+        backgroundColor = Color3.fromRGB(35, 35, 35), -- Slightly darker header
+        borderRadius = 8, -- UICorner
+        borderSizePixel = 0
+    },
+    backButton = {
+        -- TextButton
+        size = UDim2.new(0.08, 0, 0.8, 0),
+        position = UDim2.new(0.01, 0, 0.1, 0),
+        backgroundColor = Color3.fromRGB(60, 60, 60), -- Darker button
+        textColor = Color3.fromRGB(255, 255, 255), -- Light text
+        borderRadius = 4, -- UICorner
+        font = Enum.Font.SourceSans,
+        textSize = 16,
+        text = "◀",
+        borderSizePixel = 1
+    },
+    searchButton = {
+        -- TextButton
+        size = UDim2.new(0.08, 0, 0.8, 0),
+        position = UDim2.new(0.10, 0, 0.1, 0),
+        backgroundColor = Color3.fromRGB(60, 60, 60), -- Darker button
+        textColor = Color3.fromRGB(255, 255, 255), -- Light text
+        borderRadius = 4, -- UICorner
+        font = Enum.Font.SourceSans,
+        textSize = 16,
+        text = "🔍",
+        borderSizePixel = 1
+    },
+    infoButton = {
+        -- TextButton
+        size = UDim2.new(0.08, 0, 0.8, 0),
+        position = UDim2.new(0.19, 0, 0.1, 0),
+        backgroundColor = Color3.fromRGB(60, 60, 60), -- Darker button
+        textColor = Color3.fromRGB(255, 255, 255), -- Light text
+        borderRadius = 4, -- UICorner
+        font = Enum.Font.SourceSans,
+        textSize = 16,
+        text = "ℹ️",
+        borderSizePixel = 1
+    },
+    pathTextBox = {
+        -- TextLabel
+        size = UDim2.new(0.6, 0, 0.8, 0),
+        position = UDim2.new(0.28, 0, 0.1, 0),
+        backgroundColor = Color3.fromRGB(50, 50, 50), -- Darker background
+        textColor = Color3.fromRGB(255, 255, 255), -- Light text
+        borderRadius = 4, -- UICorner
+        font = Enum.Font.SourceSans,
+        textSize = 16,
+        text = "Game",
+        borderSizePixel = 1
+    },
+    exitButton = {
+        -- TextButton
+        size = UDim2.new(0.08, 0, 0.8, 0),
+        position = UDim2.new(0.91, 0, 0.1, 0),
+        backgroundColor = Color3.fromRGB(255, 80, 80), -- Red button
+        textColor = Color3.fromRGB(255, 255, 255), -- Light text
+        borderRadius = 4, -- UICorner
+        font = Enum.Font.SourceSans,
+        textSize = 16,
+        text = "X",
+        borderSizePixel = 1
+    },
+    contentFrame = {
+        -- Frame
+        size = UDim2.new(1, 0, 0.9, 0),
+        position = UDim2.new(0, 0, 0.1, 0),
+        backgroundColor = Color3.fromRGB(45, 45, 45), -- Dark background
+        borderRadius = 8, -- UICorner
+        borderSizePixel = 0
+    },
+    scrollingFrame = {
+        -- ScrollingFrame
+        size = UDim2.new(1, 0, 1, 0),
+        backgroundColor = Color3.fromRGB(40, 40, 40), -- Darker background
+        borderRadius = 8, -- UICorner
+        padding = 5 -- UIListLayout
+    },
+    infoPopup = {
+        -- Frame
+        size = UDim2.new(0.4, 0, 0.4, 0),
+        position = UDim2.new(0.3, 0, 0.3, 0),
+        backgroundColor = Color3.fromRGB(50, 50, 50), -- Dark background
+        borderRadius = 8, -- UICorner
+        borderSizePixel = 1
+    },
+    infoHeader = {
+        -- Frame
+        size = UDim2.new(1, 0, 0.2, 0),
+        backgroundColor = Color3.fromRGB(40, 40, 40), -- Darker header
+        borderRadius = 8, -- UICorner
+        borderSizePixel = 0
+    },
+    infoContent = {
+        -- Frame
+        size = UDim2.new(1, 0, 0.8, 0),
+        position = UDim2.new(0, 0, 0.2, 0),
+        backgroundColor = Color3.fromRGB(45, 45, 45) -- Darker background
+    },
+    infoText = {
+        size = UDim2.new(1, 0, 1, 0),
+        backgroundColor = Color3.fromRGB(45, 45, 45), -- Dark background
+        textColor = Color3.fromRGB(255, 255, 255), -- Light text
+        font = Enum.Font.SourceSans,
+        textSize = 14,
+        text = [[
+About:
+This tool provides an interface to browse and interact with game objects.
+
+Credits:
+- briantu: Developer
+]]
+    },
+    infoClose = {
+        -- TextButton
+        size = UDim2.new(0.08, 0, 0.8, 0),
+        position = UDim2.new(0.91, 0, 0.1, 0),
+        backgroundColor = Color3.fromRGB(255, 80, 80), -- Red button
+        textColor = Color3.fromRGB(255, 255, 255), -- Light text
+        borderRadius = 4, -- UICorner
+        font = Enum.Font.SourceSans,
+        textSize = 16,
+        text = "X",
+        borderSizePixel = 1
+    },
+    textButton = {
+        size = UDim2.new(1, 0, 0, 30),
+        backgroundColor = Color3.fromRGB(60, 60, 60), -- Darker background
+        textColor = Color3.fromRGB(255, 255, 255), -- Light text
+        font = Enum.Font.SourceSans,
+        textSize = 14,
+        text = "📁 ",
+        borderSizePixel = 1
+    },
+    textLabel = {
+        -- TextLabel
+        size = UDim2.new(1, 0, 0, 30),
+        backgroundColor = Color3.fromRGB(50, 50, 50), -- Darker background
+        textColor = Color3.fromRGB(255, 255, 255), -- Light text
+        font = Enum.Font.SourceSans,
+        textSize = 14,
+        text = "📄 ",
+        borderSizePixel = 1
+    }
+}
+
+-- Create the main screen GUI
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "ExplorerGui"
+screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+-- Create the container frame
+local containerFrame = Instance.new("Frame")
+containerFrame.Size = styleSheet.container.size
+containerFrame.Position = styleSheet.container.position
+containerFrame.BackgroundColor3 = styleSheet.container.backgroundColor
+containerFrame.BorderSizePixel = styleSheet.container.borderSizePixel
+containerFrame.Parent = screenGui
+
+-- Apply UICorner to the container frame
+local containerUICorner = Instance.new("UICorner")
+containerUICorner.CornerRadius = UDim.new(0, styleSheet.container.borderRadius)
+containerUICorner.Parent = containerFrame
+
+-- Create the header frame
+local headerFrame = Instance.new("Frame")
+headerFrame.Size = styleSheet.header.size
+headerFrame.BackgroundColor3 = styleSheet.header.backgroundColor
+headerFrame.BorderSizePixel = styleSheet.header.borderSizePixel
+headerFrame.Parent = containerFrame
+
+-- Apply UICorner to the header frame
+local headerUICorner = Instance.new("UICorner")
+headerUICorner.CornerRadius = UDim.new(0, styleSheet.header.borderRadius)
+headerUICorner.Parent = headerFrame
+
+-- Create the back button
+local backButton = Instance.new("TextButton")
+backButton.Size = styleSheet.backButton.size
+backButton.Position = styleSheet.backButton.position
+backButton.Text = styleSheet.backButton.text
+backButton.BackgroundColor3 = styleSheet.backButton.backgroundColor
+backButton.BorderSizePixel = styleSheet.backButton.borderSizePixel
+backButton.Font = styleSheet.backButton.font
+backButton.TextSize = styleSheet.backButton.textSize
+backButton.TextColor3 = styleSheet.backButton.textColor
+backButton.Parent = headerFrame
+
+-- Apply UICorner to the back button
+local backUICorner = Instance.new("UICorner")
+backUICorner.CornerRadius = UDim.new(0, styleSheet.backButton.borderRadius)
+backUICorner.Parent = backButton
+
+-- Create the search button
+local searchButton = Instance.new("TextButton")
+searchButton.Size = styleSheet.searchButton.size
+searchButton.Position = styleSheet.searchButton.position
+searchButton.Text = styleSheet.searchButton.text
+searchButton.BackgroundColor3 = styleSheet.searchButton.backgroundColor
+searchButton.BorderSizePixel = styleSheet.searchButton.borderSizePixel
+searchButton.Font = styleSheet.searchButton.font
+searchButton.TextSize = styleSheet.searchButton.textSize
+searchButton.TextColor3 = styleSheet.searchButton.textColor
+searchButton.Parent = headerFrame
+
+-- Apply UICorner to the search button
+local searchUICorner = Instance.new("UICorner")
+searchUICorner.CornerRadius = UDim.new(0, styleSheet.searchButton.borderRadius)
+searchUICorner.Parent = searchButton
+
+-- Create the info button
+local infoButton = Instance.new("TextButton")
+infoButton.Size = styleSheet.infoButton.size
+infoButton.Position = styleSheet.infoButton.position
+infoButton.Text = styleSheet.infoButton.text
+infoButton.BackgroundColor3 = styleSheet.infoButton.backgroundColor
+infoButton.BorderSizePixel = styleSheet.infoButton.borderSizePixel
+infoButton.Font = styleSheet.infoButton.font
+infoButton.TextSize = styleSheet.infoButton.textSize
+infoButton.TextColor3 = styleSheet.infoButton.textColor
+infoButton.Parent = headerFrame
+
+-- Apply UICorner to the info button
+local infoUICorner = Instance.new("UICorner")
+infoUICorner.CornerRadius = UDim.new(0, styleSheet.infoButton.borderRadius)
+infoUICorner.Parent = infoButton
+
+-- Create the path text box
+local pathTextBox = Instance.new("TextLabel")
+pathTextBox.Size = styleSheet.pathTextBox.size
+pathTextBox.Position = styleSheet.pathTextBox.position
+pathTextBox.Text = styleSheet.pathTextBox.text
+pathTextBox.BackgroundColor3 = styleSheet.pathTextBox.backgroundColor
+pathTextBox.BorderSizePixel = styleSheet.pathTextBox.borderSizePixel
+pathTextBox.TextColor3 = styleSheet.pathTextBox.textColor
+pathTextBox.Font = styleSheet.pathTextBox.font
+pathTextBox.TextSize = styleSheet.pathTextBox.textSize
+pathTextBox.Parent = headerFrame
+
+-- Apply UICorner to the path text box
+local pathUICorner = Instance.new("UICorner")
+pathUICorner.CornerRadius = UDim.new(0, styleSheet.pathTextBox.borderRadius)
+pathUICorner.Parent = pathTextBox
+
+-- Create the exit button
+local exitButton = Instance.new("TextButton")
+exitButton.Size = styleSheet.exitButton.size
+exitButton.Position = styleSheet.exitButton.position
+exitButton.Text = styleSheet.exitButton.text
+exitButton.BackgroundColor3 = styleSheet.exitButton.backgroundColor
+exitButton.BorderSizePixel = styleSheet.exitButton.borderSizePixel
+exitButton.Font = styleSheet.exitButton.font
+exitButton.TextSize = styleSheet.exitButton.textSize
+exitButton.TextColor3 = styleSheet.exitButton.textColor
+exitButton.Parent = headerFrame
+
+-- Apply UICorner to the exit button
+local exitUICorner = Instance.new("UICorner")
+exitUICorner.CornerRadius = UDim.new(0, styleSheet.exitButton.borderRadius)
+exitUICorner.Parent = exitButton
+
+-- Create the content frame
+local contentFrame = Instance.new("Frame")
+contentFrame.Size = styleSheet.contentFrame.size
+contentFrame.Position = styleSheet.contentFrame.position
+contentFrame.BackgroundColor3 = styleSheet.contentFrame.backgroundColor
+contentFrame.BorderSizePixel = styleSheet.contentFrame.borderSizePixel
+contentFrame.Parent = containerFrame
+
+-- Apply UICorner to the content frame
+local contentUICorner = Instance.new("UICorner")
+contentUICorner.CornerRadius = UDim.new(0, styleSheet.contentFrame.borderRadius)
+contentUICorner.Parent = contentFrame
+
+-- Create the scrolling frame
+local scrollingFrame = Instance.new("ScrollingFrame")
+scrollingFrame.Size = styleSheet.scrollingFrame.size
+scrollingFrame.ScrollBarThickness = 10
+scrollingFrame.BackgroundColor3 = styleSheet.scrollingFrame.backgroundColor
+scrollingFrame.BorderSizePixel = 1
+scrollingFrame.AutomaticCanvasSize = Enum.AutomaticSize.Y
+scrollingFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
+scrollingFrame.Parent = contentFrame
+
+-- Apply UICorner to the scrolling frame
+local scrollingUICorner = Instance.new("UICorner")
+scrollingUICorner.CornerRadius = UDim.new(0, styleSheet.scrollingFrame.borderRadius)
+scrollingUICorner.Parent = scrollingFrame
+
+-- Create the UIListLayout for the scrolling frame
+local uiListLayout = Instance.new("UIListLayout")
+uiListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+uiListLayout.Padding = UDim.new(0, styleSheet.scrollingFrame.padding)
+uiListLayout.Parent = scrollingFrame
+
+-- Create Info Popup
+local function createInfoPopup()
+    local infoPopup = Instance.new("Frame")
+    infoPopup.Size = styleSheet.infoPopup.size
+    infoPopup.Position = styleSheet.infoPopup.position
+    infoPopup.BackgroundColor3 = styleSheet.infoPopup.backgroundColor
+    infoPopup.BorderSizePixel = styleSheet.infoPopup.borderSizePixel
+    infoPopup.Parent = screenGui
+
+    local infoPopupUICorner = Instance.new("UICorner")
+    infoPopupUICorner.CornerRadius = UDim.new(0, styleSheet.infoPopup.borderRadius)
+    infoPopupUICorner.Parent = infoPopup
+
+    local infoHeader = Instance.new("Frame")
+    infoHeader.Size = styleSheet.infoHeader.size
+    infoHeader.BackgroundColor3 = styleSheet.infoHeader.backgroundColor
+    infoHeader.BorderSizePixel = styleSheet.infoHeader.borderSizePixel
+    infoHeader.Parent = infoPopup
+
+    local infoHeaderUICorner = Instance.new("UICorner")
+    infoHeaderUICorner.CornerRadius = UDim.new(0, styleSheet.infoHeader.borderRadius)
+    infoHeaderUICorner.Parent = infoHeader
+
+    local closeButton = Instance.new("TextButton")
+    closeButton.Size = styleSheet.infoClose.size
+    closeButton.Position = styleSheet.infoClose.position
+    closeButton.Text = styleSheet.infoClose.text
+    closeButton.BackgroundColor3 = styleSheet.infoClose.backgroundColor
+    closeButton.TextColor3 = styleSheet.infoClose.textColor
+    closeButton.BorderSizePixel = styleSheet.infoClose.borderSizePixel
+    closeButton.Font = styleSheet.infoClose.font
+    closeButton.TextSize = styleSheet.infoClose.textSize
+    closeButton.Parent = infoHeader
+
+    local closeButtonUICorner = Instance.new("UICorner")
+    closeButtonUICorner.CornerRadius = UDim.new(0, 4)
+    closeButtonUICorner.Parent = closeButton
+
+    local infoContent = Instance.new("Frame")
+    infoContent.Size = styleSheet.infoContent.size
+    infoContent.Position = styleSheet.infoContent.position
+    infoContent.BackgroundColor3 = styleSheet.infoContent.backgroundColor
+    infoContent.Parent = infoPopup
+
+    local infoContentUICorner = Instance.new("UICorner")
+    infoContentUICorner.CornerRadius = UDim.new(0, styleSheet.infoPopup.borderRadius)
+    infoContentUICorner.Parent = infoContent
+
+    local infoTextBox = Instance.new("TextLabel")
+    infoTextBox.Size = styleSheet.infoText.size
+    infoTextBox.BackgroundColor3 = styleSheet.infoText.backgroundColor
+    infoTextBox.TextColor3 = styleSheet.infoText.textColor
+    infoTextBox.Font = styleSheet.infoText.font
+    infoTextBox.TextSize = styleSheet.infoText.textSize
+    infoTextBox.Text = styleSheet.infoText.text
+    infoTextBox.TextWrapped = true
+    infoTextBox.Parent = infoContent
+
+    closeButton.MouseButton1Click:Connect(
+        function()
+            infoPopup:Destroy()
+        end
+    )
+end
+
+-- Create List
+local parentStack = {}
+
+local function updatePathTextBox(currentObject)
+    local path = currentObject.Name
+    for i = #parentStack, 1, -1 do
+        path = parentStack[i].Name .. "\\" .. path
+    end
+    pathTextBox.Text = path
+end
+
+local function populateChildrenList(parentObject)
+    for _, child in ipairs(scrollingFrame:GetChildren()) do
+        if child:IsA("TextLabel") or child:IsA("TextButton") then
+            child:Destroy()
+        end
+    end
+
+    for _, child in ipairs(parentObject:GetChildren()) do
+        if #child:GetChildren() > 0 then
+            local textButton = Instance.new("TextButton")
+            textButton.Size = styleSheet.textButton.size
+            textButton.Text = styleSheet.textButton.text .. child.Name
+            textButton.BackgroundColor3 = styleSheet.textButton.backgroundColor
+            textButton.BorderSizePixel = styleSheet.textButton.borderSizePixel
+            textButton.TextColor3 = styleSheet.textButton.textColor
+            textButton.TextSize = styleSheet.textButton.textSize
+            textButton.Font = styleSheet.textButton.font
+            textButton.Parent = scrollingFrame
+
+            textButton.MouseButton1Click:Connect(
+                function()
+                    table.insert(parentStack, parentObject)
+                    populateChildrenList(child)
+                    updatePathTextBox(child)
+                end
+            )
+        else
+            local textLabel = Instance.new("TextLabel")
+            textLabel.Size = styleSheet.textLabel.size
+            textLabel.Text = styleSheet.textLabel.text .. child.Name
+            textLabel.BackgroundColor3 = styleSheet.textLabel.backgroundColor
+            textLabel.BorderSizePixel = styleSheet.textLabel.borderSizePixel
+            textLabel.TextColor3 = styleSheet.textLabel.textColor
+            textLabel.TextSize = styleSheet.textLabel.textSize
+            textLabel.Font = styleSheet.textLabel.font
+            textLabel.Parent = scrollingFrame
+        end
+    end
+end
+
+-- Create Search Popup
+local function createSearchPopup()
+    -- Create the popup frame
+    local searchPopup = Instance.new("Frame")
+    searchPopup.Size = styleSheet.infoPopup.size
+    searchPopup.Position = styleSheet.infoPopup.position
+    searchPopup.BackgroundColor3 = styleSheet.infoPopup.backgroundColor
+    searchPopup.BorderSizePixel = styleSheet.infoPopup.borderSizePixel
+    searchPopup.Parent = screenGui
+
+    -- Apply UICorner to the search popup
+    local searchPopupUICorner = Instance.new("UICorner")
+    searchPopupUICorner.CornerRadius = UDim.new(0, styleSheet.infoPopup.borderRadius)
+    searchPopupUICorner.Parent = searchPopup
+
+    local searchHeader = Instance.new("Frame")
+    searchHeader.Size = styleSheet.infoHeader.size
+    searchHeader.BackgroundColor3 = styleSheet.infoHeader.backgroundColor
+    searchHeader.BorderSizePixel = styleSheet.infoHeader.borderSizePixel
+    searchHeader.Parent = searchPopup
+
+    local searchHeaderUICorner = Instance.new("UICorner")
+    searchHeaderUICorner.CornerRadius = UDim.new(0, styleSheet.infoHeader.borderRadius)
+    searchHeaderUICorner.Parent = searchHeader
+
+    -- Create the close button for the search popup
+    local searchCloseButton = Instance.new("TextButton")
+    searchCloseButton.Size = styleSheet.infoClose.size
+    searchCloseButton.Position = styleSheet.infoClose.position
+    searchCloseButton.Text = styleSheet.infoClose.text
+    searchCloseButton.BackgroundColor3 = styleSheet.infoClose.backgroundColor
+    searchCloseButton.TextColor3 = styleSheet.infoClose.textColor
+    searchCloseButton.BorderSizePixel = styleSheet.infoClose.borderSizePixel
+    searchCloseButton.Font = styleSheet.infoClose.font
+    searchCloseButton.TextSize = styleSheet.infoClose.textSize
+    searchCloseButton.Parent = searchHeader
+
+    -- Apply UICorner to the close button
+    local searchCloseUICorner = Instance.new("UICorner")
+    searchCloseUICorner.CornerRadius = UDim.new(0, 4)
+    searchCloseUICorner.Parent = searchCloseButton
+
+    -- Create the scrolling frame for search results
+    local searchResultsFrame = Instance.new("ScrollingFrame")
+    searchResultsFrame.Size = styleSheet.infoContent.size
+    searchResultsFrame.Position = styleSheet.infoContent.position
+    searchResultsFrame.BackgroundColor3 = styleSheet.scrollingFrame.backgroundColor
+    searchResultsFrame.BorderSizePixel = styleSheet.scrollingFrame.borderSizePixel
+    searchResultsFrame.ScrollBarThickness = 10
+    searchResultsFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
+    searchResultsFrame.AutomaticCanvasSize = Enum.AutomaticSize.Y
+    searchResultsFrame.Parent = searchPopup
+
+    -- Apply UICorner to the search results frame
+    local searchResultsUICorner = Instance.new("UICorner")
+    searchResultsUICorner.CornerRadius = UDim.new(0, styleSheet.scrollingFrame.borderRadius)
+    searchResultsUICorner.Parent = searchResultsFrame
+
+    -- Create UIListLayout for the search results frame
+    local searchResultsLayout = Instance.new("UIListLayout")
+    searchResultsLayout.SortOrder = Enum.SortOrder.LayoutOrder
+    searchResultsLayout.Padding = UDim.new(0, styleSheet.scrollingFrame.padding)
+    searchResultsLayout.Parent = searchResultsFrame
+
+    -- Create the search query text box
+    local searchTextBox = Instance.new("TextBox")
+    searchTextBox.Size = UDim2.new(0.75, 0, 0.1, 0)
+    searchTextBox.Position = UDim2.new(0.02, 0, 0.82, 0)
+    searchTextBox.BackgroundColor3 = styleSheet.pathTextBox.backgroundColor
+    searchTextBox.BorderSizePixel = styleSheet.pathTextBox.borderSizePixel
+    searchTextBox.TextColor3 = styleSheet.pathTextBox.textColor
+    searchTextBox.TextSize = styleSheet.pathTextBox.textSize
+    searchTextBox.Font = styleSheet.pathTextBox.font
+    searchTextBox.PlaceholderText = "Enter search query"
+    searchTextBox.Text = ""
+    searchTextBox.Parent = searchPopup
+
+    -- Apply UICorner to the search text box
+    local searchTextBoxUICorner = Instance.new("UICorner")
+    searchTextBoxUICorner.CornerRadius = UDim.new(0, styleSheet.pathTextBox.borderRadius)
+    searchTextBoxUICorner.Parent = searchTextBox
+
+    -- Create the search button
+    local executeSearchButton = Instance.new("TextButton")
+    executeSearchButton.Size = UDim2.new(0.2, 0, 0.1, 0)
+    executeSearchButton.Position = UDim2.new(0.78, 0, 0.82, 0)
+    executeSearchButton.Text = "Search"
+    executeSearchButton.BackgroundColor3 = styleSheet.searchButton.backgroundColor
+    executeSearchButton.TextColor3 = styleSheet.searchButton.textColor
+    executeSearchButton.BorderSizePixel = styleSheet.searchButton.borderSizePixel
+    executeSearchButton.Font = styleSheet.searchButton.font
+    executeSearchButton.TextSize = styleSheet.searchButton.textSize
+    executeSearchButton.Parent = searchPopup
+
+    -- Apply UICorner to the search button
+    local executeSearchButtonUICorner = Instance.new("UICorner")
+    executeSearchButtonUICorner.CornerRadius = UDim.new(0, styleSheet.searchButton.borderRadius)
+    executeSearchButtonUICorner.Parent = executeSearchButton
+
+    -- Function to perform the search and populate results
+    local function performSearch(query)
+        -- Clear previous search results
+        for _, child in ipairs(searchResultsFrame:GetChildren()) do
+            if child:IsA("TextButton") or child:IsA("TextLabel") then
+                child:Destroy()
+            end
+        end
+
+        -- Perform search and populate search results
+        local function searchRecursive(parentObject, path)
+            local hits = {}
+            for _, child in ipairs(parentObject:GetChildren()) do
+                local fullPath = path .. "/" .. child.Name
+                if string.find(child.Name:lower(), query:lower()) then
+                    if #child:GetChildren() > 0 then
+                        -- Create and populate a TextButton for the search result
+                        local textButton = Instance.new("TextLabel")
+                        textButton.Size = styleSheet.textButton.size
+                        textButton.Text = styleSheet.textButton.text .. child.Name .. "\n" .. fullPath
+                        textButton.BackgroundColor3 = styleSheet.textButton.backgroundColor
+                        textButton.BorderSizePixel = styleSheet.textButton.borderSizePixel
+                        textButton.TextColor3 = styleSheet.textButton.textColor
+                        textButton.TextSize = styleSheet.textButton.textSize
+                        textButton.Font = styleSheet.textButton.font
+                        textButton.Parent = searchResultsFrame
+                    else
+                        -- Create and populate a TextLabel for the search result
+                        local textLabel = Instance.new("TextLabel")
+                        textLabel.Size = styleSheet.textLabel.size
+                        textLabel.Text = styleSheet.textLabel.text .. child.Name .. "\n" .. fullPath
+                        textLabel.BackgroundColor3 = styleSheet.textLabel.backgroundColor
+                        textLabel.BorderSizePixel = styleSheet.textLabel.borderSizePixel
+                        textLabel.TextColor3 = styleSheet.textLabel.textColor
+                        textLabel.TextSize = styleSheet.textLabel.textSize
+                        textLabel.Font = styleSheet.textLabel.font
+                        textLabel.Parent = searchResultsFrame
+                    end
+                end
+                if #child:GetChildren() > 0 then
+                    -- Recursively search in children, passing the updated path
+                    searchRecursive(child, fullPath)
+                end
+            end
+        end
+
+        -- Start the search with the root of the game and an empty path
+        searchRecursive(game, "")
+    end
+
+    -- Connect search button click to perform search
+    executeSearchButton.MouseButton1Click:Connect(
+        function()
+            local query = searchTextBox.Text
+            performSearch(query)
+        end
+    )
+
+    -- Connect close button to destroy the popup
+    searchCloseButton.MouseButton1Click:Connect(
+        function()
+            searchPopup:Destroy()
+        end
+    )
+end
+
+populateChildrenList(game)
+
+exitButton.MouseButton1Click:Connect(
+    function()
+        screenGui:Destroy()
+    end
+)
+
+backButton.MouseButton1Click:Connect(
+    function()
+        if #parentStack > 0 then
+            local previousParent = table.remove(parentStack)
+            populateChildrenList(previousParent)
+            updatePathTextBox(previousParent)
+        end
+    end
+)
+
+searchButton.MouseButton1Click:Connect(
+    function()
+        createSearchPopup()
+    end
+)
+
+infoButton.MouseButton1Click:Connect(
+    function()
+        createInfoPopup()
+    end
+)
