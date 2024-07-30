@@ -1,0 +1,68 @@
+
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+
+local gamePlaceIds = {
+    Arsenal = 286090429,
+    BreakIn = 4620170611,
+    LegendsOfSpeed = 3101667897,
+    Doors = 6516141723
+}
+
+local scripts = {
+    Arsenal = "https://raw.githubusercontent.com/galaxyytriponmobile/Scripts/main/ARSENAL/Arsenal%20GUIs",
+    BreakIn = "https://raw.githubusercontent.com/galaxyytriponmobile/Scripts/main/BREAK%20IN/Break%20In%20GUI",
+    LegendsOfSpeed = "https://raw.githubusercontent.com/galaxyytriponmobile/Scripts/main/LEGENDS%20OF%20SPEED/Legends%20Of%20Speed%20GUI",
+    DoorsFFJhub = "https://raw.githubusercontent.com/galaxyytriponmobile/Scripts/main/DOORS/Doors%20FFJHub",
+    FFJHub = "https://raw.githubusercontent.com/galaxyytriponmobile/Scripts/main/FFJ1",
+    Aimbot = "https://raw.githubusercontent.com/galaxyytriponmobile/Scripts/main/Aimbot",
+    Esp = "https://raw.githubusercontent.com/galaxyytriponmobile/Scripts/main/ESP",
+    InfiniteYield = "https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source",
+	OPFinality = "https://raw.githubusercontent.com/galaxyytriponmobile/Scripts/main/TROLL%20GUIS/OPFinality",
+	Explorer = "https://raw.githubusercontent.com/galaxyytriponmobile/Scripts/main/Explorer%20GUI",
+	FeTrollGui = "https://raw.githubusercontent.com/galaxyytriponmobile/Scripts/main/TROLL%20GUIS/FE%20Troll%20gui",
+	FETrollGui2 = "https://raw.githubusercontent.com/galaxyytriponmobile/Scripts/main/TROLL%20GUIS/Troll%20GUI%202",
+	DoorsBlackkingHub = "https://raw.githubusercontent.com/galaxyytriponmobile/Scripts/main/DOORS/DoorsBlackkinghub"
+}
+
+local Window = OrionLib:MakeWindow({Name = "Script Hub", HidePremium = false, SaveConfig = true, ConfigFolder = "ScriptHub"})
+
+local RecommendedTab = Window:MakeTab({
+    Name = "Game Scripts",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+for gameName, placeId in pairs(gamePlaceIds) do
+    RecommendedTab:AddButton({
+        Name = gameName,
+        Callback = function()
+            if game.PlaceId == placeId then
+                local scriptToLoad = scripts[gameName]
+                if scriptToLoad then
+                    loadstring(game:HttpGet(scriptToLoad))()
+                else
+                    print("No script found for " .. gameName)
+                end
+            else
+                print("This script is not meant for this game.")
+            end
+        end
+    })
+end
+
+local AllScriptsTab = Window:MakeTab({
+    Name = "All Scripts",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+for scriptName, scriptURL in pairs(scripts) do
+    AllScriptsTab:AddButton({
+        Name = scriptName,
+        Callback = function()
+            loadstring(game:HttpGet(scriptURL))()
+        end
+    })
+end
+
+OrionLib:Init()
