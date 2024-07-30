@@ -1,3 +1,4 @@
+-- aimlock script
 local plrs = game:GetService("Players")
 local TeamBased = true ; local teambasedswitch = "o"
 local presskeytoaim = true; local aimkey = "e"
